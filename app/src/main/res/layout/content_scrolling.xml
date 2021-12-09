@@ -8,10 +8,64 @@
     tools:context=".ScrollingActivity"
     tools:showIn="@layout/activity_scrolling">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="@string/large_text" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+
+      <com.google.android.material.card.MaterialCardView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/common_padding_min"
+          android:layout_marginEnd="@dimen/common_padding_min"
+          android:layout_marginStart="@dimen/common_padding_min"
+          android:clickable="true"
+          android:focusable="true"
+         >
+
+
+
+         <androidx.constraintlayout.widget.ConstraintLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:paddingTop="@dimen/common_padding_default"
+             android:paddingStart="@dimen/common_padding_default"
+             android:paddingEnd="@dimen/common_padding_default"
+             >
+            <ImageView
+                android:id="@+id/img_card"
+                android:layout_width="@dimen/card_img_size"
+                android:layout_height="@dimen/card_img_size"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_shop"
+                android:layout_marginTop="@dimen/common_padding_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_btn_buy"
+                app:icon="@drawable/ic_shopping"
+                app:layout_constraintTop_toBottomOf="@+id/img_card"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/card_btn_skip"
+                app:layout_constraintTop_toTopOf="@+id/btn_shop"
+                app:layout_constraintEnd_toStartOf="@id/btn_shop"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                />
+
+         </androidx.constraintlayout.widget.ConstraintLayout>
+      </com.google.android.material.card.MaterialCardView>
+   </LinearLayout>
+
+
 
 </androidx.core.widget.NestedScrollView>
