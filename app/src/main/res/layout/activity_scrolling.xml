@@ -12,14 +12,14 @@
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottom_app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:navigationIcon="@drawable/ic_menu"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-        app:menu="@menu/menu_scrolling"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_gravity="bottom"
+        app:fabAnimationMode="slide"
         app:hideOnScroll="true"
-        />
+        app:menu="@menu/menu_scrolling"
+        app:navigationIcon="@drawable/ic_menu" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
