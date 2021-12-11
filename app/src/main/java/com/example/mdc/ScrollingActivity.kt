@@ -9,6 +9,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.bottomappbar.BottomAppBar
 
 import com.example.mdc.databinding.ActivityScrollingBinding
@@ -56,6 +58,13 @@ class ScrollingActivity : AppCompatActivity() {
                 })
                 .show()
         }
+
+        Glide.with(this)
+            .load("https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2019/04/Como-Usar-Um-Git-Branch.png")
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .into(binding.content.imgCover)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
