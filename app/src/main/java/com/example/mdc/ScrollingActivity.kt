@@ -7,6 +7,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import com.google.android.material.bottomappbar.BottomAppBar
 
 import com.example.mdc.databinding.ActivityScrollingBinding
@@ -38,6 +40,22 @@ class ScrollingActivity : AppCompatActivity() {
             }
         }*/
 
+        binding.bottomAppBar.setNavigationOnClickListener{
+            Snackbar.make(binding.root, R.string.message_action_success,Snackbar.LENGTH_LONG)
+                .setAnchorView(binding.fab)
+                .show()
+        }
+
+        binding.content.btnSkip.setOnClickListener { binding.content.cardAdd.visibility = View.GONE }
+
+        binding.content.btnShop.setOnClickListener {
+            Snackbar.make(it, R.string.card_buying, Snackbar.LENGTH_LONG)
+                .setAnchorView(binding.fab)
+                .setAction(R.string.card_to_go,{
+                    Toast.makeText(this,R.string.card_history, Toast.LENGTH_LONG).show()
+                })
+                .show()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
