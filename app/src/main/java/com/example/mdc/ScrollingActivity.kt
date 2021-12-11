@@ -1,5 +1,6 @@
 package com.example.mdc
 
+import android.graphics.Color
 import android.os.Bundle
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -8,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.webkit.URLUtil
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.model.UrlUriLoader
 import com.google.android.material.bottomappbar.BottomAppBar
 
 import com.example.mdc.databinding.ActivityScrollingBinding
@@ -59,17 +62,44 @@ class ScrollingActivity : AppCompatActivity() {
                 .show()
         }
 
-        Glide.with(this)
-            .load("https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2019/04/Como-Usar-Um-Git-Branch.png")
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .centerCrop()
-            .into(binding.content.imgCover)
+        imageUrl("https://www.hostinger.com.br/tutoriais/wp-content/uploads/sites/12/2019/04/Como-Usar-Um-Git-Branch.png")
 
-
-        binding.content.cbEnablePass.setOnClickListener{
+        binding.content.cbEnablePass.setOnClickListener{//habilitar pass
             binding.content.tilPassword.isEnabled = !binding.content.tilPassword.isEnabled
         }
 
+        binding.content.EDUri.onFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+            var errorStr:String? = null
+            var url = binding.content.EDUri.text.toString()
+            if (!hasFocus) {
+                if (url.isEmpty()){
+                   errorStr = getString(R.string.card_required)
+                }else if (URLUtil.isValidUrl(url)){
+                    imageUrl(url)
+                }else{
+                    errorStr = getString(R.string.url_invalid)
+                }
+            }
+            binding.content.EDUri.error=errorStr
+        }
+
+        binding.content.ToggleBtn.addOnButtonCheckedListener { group, checkedId, isChecked ->
+            binding.content.root.setBackgroundColor(
+                when(checkedId){
+                    R.id.btn_red -> Color.RED
+                    R.id.btn_blue -> R.color.myColor
+                    else -> Color.GREEN
+                }
+            )
+        }
+    }
+
+    private fun imageUrl(url:String){
+        Glide.with(this)
+            .load(url)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .into(binding.content.imgCover)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
