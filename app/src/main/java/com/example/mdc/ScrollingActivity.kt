@@ -9,23 +9,34 @@ import android.view.Menu
 import android.view.MenuItem
 import com.google.android.material.bottomappbar.BottomAppBar
 
-//import com.example.mdc.databinding.ActivityScrollingBinding
+import com.example.mdc.databinding.ActivityScrollingBinding
 
 class ScrollingActivity : AppCompatActivity() {
 
-    //private lateinit var binding: ActivityScrollingBinding
+    private lateinit var binding: ActivityScrollingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_scrolling)
+        //setContentView(R.layout.activity_scrolling)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
+        binding = ActivityScrollingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.fab.setOnClickListener {
+            if (binding.bottomAppBar.fabAlignmentMode == BottomAppBar.FAB_ALIGNMENT_MODE_CENTER){
+               binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+            }else{
+                binding.bottomAppBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+            }
+        }
+
+        /*findViewById<FloatingActionButton>(R.id.fab).setOnClickListener {
             if (findViewById<BottomAppBar>(R.id.bottom_app_bar).fabAlignmentMode == BottomAppBar.FAB_ALIGNMENT_MODE_CENTER){
                 findViewById<BottomAppBar>(R.id.bottom_app_bar).fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
             }else{
                 findViewById<BottomAppBar>(R.id.bottom_app_bar).fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
             }
-        }
+        }*/
 
     }
 
